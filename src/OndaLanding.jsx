@@ -425,8 +425,9 @@ const css = `
     color: var(--offwhite);
     width: 100%;
     word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    
   }
 
   .manifesto-sub {
@@ -713,13 +714,25 @@ function useScrollTypewriter(sectionId) {
 }
 
 function TypewriterText({ text, style }) {
+  const words = text.split(' ');
+  let charIndex = 0;
   return (
     <span style={style}>
-      {text.split('').map((ch, i) => (
-        <span key={i} className="tw-char" style={{ opacity: 0.12, transition: 'opacity 0.03s' }}>
-          {ch === ' ' ? ' ' : ch}
-        </span>
-      ))}
+      {words.map((word, wi) => {
+        const wordSpans = word.split('').map((ch, ci) => {
+          const idx = charIndex++;
+          return <span key={idx} className="tw-char" style={{ opacity: 0.12, transition: 'opacity 0.03s' }}>{ch}</span>;
+        });
+        if (wi < words.length - 1) charIndex++; // espaço
+        return (
+          <span key={wi} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+            {wordSpans}
+            {wi < words.length - 1 && (
+              <span className="tw-char" style={{ opacity: 0.12, transition: 'opacity 0.03s' }}>&nbsp;</span>
+            )}
+          </span>
+        );
+      })}
     </span>
   );
 }
@@ -753,10 +766,10 @@ function ManifestoSection() {
 
       {/* DIREITA — texto */}
       <div className="manifesto-right">
-        <p className="manifesto-p">
+        <p className="manifesto-p" lang="pt">
           <TypewriterText text={line1} />
         </p>
-        <p className="manifesto-p">
+        <p className="manifesto-p" lang="pt">
           <TypewriterText text={line2} />
         </p>
         <p className="manifesto-sub">
