@@ -188,89 +188,185 @@ const css = `
   }
 
   /* ── PROBLEM ── */
+/* ── PROBLEM ── */
   #problema { border-top: 0.5px solid var(--border); }
-  .problema-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: center; margin-top: 4rem;
-  }
-  .problema-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-  .problema-list li {
-    display: flex; align-items: flex-start; gap: 1rem;
-    font-size: 1rem; color: var(--muted);
-    padding: 1rem 0; border-bottom: 0.5px solid var(--border);
-  }
-  .problema-list li:last-child { border-bottom: none; }
-  .prob-icon {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); flex-shrink: 0; margin-top: 0.55rem;
-  }
-  .problema-statement {
-    background: var(--card); border: 0.5px solid var(--border);
-    border-radius: 20px; padding: 2.5rem;
-  }
-  .prob-stat-label {
-    font-size: 0.75rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
-  }
-  .prob-stat-big {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 3.5rem; font-weight: 700;
-    color: var(--offwhite); line-height: 1; margin-bottom: 0.5rem;
-  }
-  .prob-stat-big span { color: var(--accent); }
-  .prob-stat-sub { color: var(--muted); font-size: 0.95rem; }
-  .prob-divider { height: 0.5px; background: var(--border); margin: 1.5rem 0; }
-
-  /* ── PLANOS ── */
-  #planos { border-top: 0.5px solid var(--border); }
-  .planos-header {
-    display: flex; justify-content: space-between;
-    align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 2rem;
-  }
-  .planos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .plano-card {
-    background: var(--card); border: 0.5px solid var(--border);
-    border-radius: 20px; padding: 2rem;
+  .prob-scroll-track { height: 160vh; position: relative; }
+  .prob-sticky {
+    position: sticky; top: 0; height: 100vh;
     display: flex; flex-direction: column;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative; overflow: hidden;
+    justify-content: center; align-items: center;
+    padding: 0 4rem; overflow: hidden;
   }
-  .plano-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: transparent; transition: background 0.3s;
+  .prob-inner { width: 100%; max-width: 680px; }
+  .prob-label-top {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .plano-card:hover { border-color: rgba(61,142,255,0.3); transform: translateY(-4px); }
-  .plano-card:hover::before { background: var(--accent); }
-  .plano-card.destaque { border-color: rgba(61,142,255,0.4); background: #0e1620; }
-  .plano-card.destaque::before { background: var(--accent); }
-  .plano-badge {
-    position: absolute; top: 1.5rem; right: 1.5rem;
-    background: rgba(61,142,255,0.15); color: var(--accent);
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.3rem 0.7rem; border-radius: 99px;
+  .prob-label-top.vis { opacity: 1; transform: translateY(0); }
+  .prob-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;
+    letter-spacing: -0.025em; color: var(--offwhite); margin-bottom: 3rem;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
   }
-  .plano-wave { font-size: 1.8rem; margin-bottom: 1rem; }
-  .plano-nome {
-    font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700;
-    color: var(--offwhite); margin-bottom: 0.25rem;
+  .prob-headline.vis { opacity: 1; transform: translateY(0); }
+  .prob-row {
+    display: grid; grid-template-columns: 3rem 1fr;
+    gap: 1.5rem; align-items: baseline;
+    padding: 1.1rem 0; border-bottom: 0.5px solid var(--border);
+    opacity: 0; transform: translateX(32px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .plano-objetivo { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
-  .plano-preco { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 1.5rem; }
-  .plano-valor {
-    font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--offwhite);
+  .prob-row:first-child { border-top: 0.5px solid var(--border); }
+  .prob-row.vis { opacity: 1; transform: translateX(0); }
+  .prob-row-num {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600;
+    color: rgba(255,255,255,0.18); letter-spacing: 0.08em; transition: color 0.3s;
   }
-  .plano-currency { font-size: 1.2rem; color: var(--muted); }
-  .plano-period { font-size: 0.85rem; color: var(--muted); }
-  .plano-features {
-    list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem;
+  .prob-row.vis .prob-row-num { color: var(--accent); }
+  .prob-row-text { font-size: 1.15rem; color: var(--muted); line-height: 1.5; transition: color 0.3s; }
+  .prob-row.vis .prob-row-text { color: var(--offwhite); }
+  .prob-stat-wrap {
+    margin-top: 2.5rem; display: flex; align-items: baseline; gap: 1.5rem;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .plano-features li { font-size: 0.875rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.6rem; }
-  .feat-check {
-    width: 16px; height: 16px; flex-shrink: 0; border-radius: 50%;
-    background: rgba(61,142,255,0.15); color: var(--accent);
-    display: flex; align-items: center; justify-content: center; font-size: 0.6rem; margin-top: 1px;
+  .prob-stat-wrap.vis { opacity: 1; transform: translateY(0); }
+  .prob-stat-num {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700; letter-spacing: -0.04em; color: var(--offwhite); line-height: 1; white-space: nowrap;
+  }
+  .prob-stat-num span { color: var(--accent); }
+  .prob-stat-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; max-width: 280px; }
+  @media (max-width: 900px) {
+    .prob-sticky { padding: 0 1.5rem; }
+    .prob-scroll-track { height: 400vh; }
   }
 
+ /* ── PLANOS ── */
+  #planos { border-top: 0.5px solid var(--border); padding: 7rem 2.5rem; }
+  .planos-hero { margin-bottom: 5rem; }
+  .planos-hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.03em; color: var(--offwhite);
+    max-width: 700px; margin-bottom: 1.5rem;
+  }
+  .planos-hero-sub {
+    font-size: 1rem; color: var(--muted);
+    max-width: 480px; line-height: 1.7;
+  }
+  .planos-bento {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+ 
+  /* Glow cursor effect */
+.plano-box {
+    background: #080808;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 0;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .pb-track {
+    position: absolute; inset: 0;
+    overflow: hidden; border-radius: 16px;
+    pointer-events: none; z-index: 0;
+  }
+ .pb-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    left: 50%; top: 50%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,142,255,0.25) 0%, rgba(61,142,255,0.08) 40%, transparent 70%);
+    filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s;
+  }
+
+.pb-border-track {
+    position: absolute; inset: -1px;
+    border-radius: 17px;
+    overflow: hidden;
+    pointer-events: none; z-index: 2;
+  }
+  .pb-border-glow {
+    position: absolute;
+    width: 120px; height: 120px;
+    left: 50%; top: 50%;
+    border-radius: 50%;
+    background: rgba(61,142,255,0.9);
+    filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+  }
+
+  .pb-content {
+    position: relative; z-index: 1;
+    padding: 2.5rem;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem; height: 100%;
+  }
+  .plano-box-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--offwhite);
+  }
+  .plano-box-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--offwhite); letter-spacing: -0.02em;
+  }
+  .plano-box-desc {
+    font-size: 0.92rem; color: var(--muted);
+    line-height: 1.7; flex: 1;
+  }
+  .plano-box-cta {
+    font-size: 0.82rem; font-weight: 500;
+    color: rgba(255,255,255,0.4); text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s; margin-top: auto;
+  }
+  .plano-box:hover .plano-box-cta { color: var(--offwhite); }
+  .plano-box.tall { grid-row: 1 / 3; }
+  .plano-box:hover {
+    background-clip: padding-box;
+    
+  }
+  
+
+
+  .planos-cta-wrap {
+    margin-top: 5rem;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 2rem; text-align: center;
+  }
+  .planos-cta-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.025em; color: var(--offwhite);
+  }
+  .planos-cta-title span { font-weight: 900; }
+  .spiral-svg { opacity: 0.5; }
+
+  @media (max-width: 900px) {
+    .planos-bento { grid-template-columns: 1fr; }
+    .plano-box.tall { grid-row: auto; }
+  }
+  
   /* ── MÉTODO ── */
   #metodo { border-top: 0.5px solid var(--border); }
   .metodo-steps {
@@ -736,6 +832,91 @@ function TypewriterText({ text, style }) {
     </span>
   );
 }
+/* ─────────────────────────────────────────────
+   PROBLEMA — scroll storytelling
+───────────────────────────────────────────── */
+function ProblemaSection() {
+  const trackRef  = useRef(null);
+  const headerRef = useRef(null);
+  const titleRef  = useRef(null);
+  const rowRefs   = useRef([]);
+  const statRef   = useRef(null);
+
+  const problems = [
+    'A sua empresa existe. O serviço é bom. Mas não aparece nas pesquisas do Google.',
+    'O website tem visitas — mas não gera contactos nem pedidos.',
+    'Os leads chegam de forma desorganizada e perdem-se.',
+    'Perde oportunidades por falta de acompanhamento.',
+    'A concorrência com serviços inferiores ganha terreno apenas por ter melhor presença digital.',
+  ];
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const STEPS = problems.length + 3;
+    const onScroll = () => {
+      const rect    = track.getBoundingClientRect();
+      const trackH  = track.offsetHeight;
+      const winH    = window.innerHeight;
+      const scrolled = Math.max(0, winH - rect.top - 300); // 300px de margem para começar a animar antes de entrar totalmente
+      const total   = trackH - winH; // 200% da altura da viewport para terminar a animação
+      const prog    = Math.min(1, scrolled / total);
+      const step    = prog * STEPS;
+      if (headerRef.current) headerRef.current.classList.toggle('vis', step >= 0.1);
+      if (titleRef.current)  titleRef.current.classList.toggle('vis', step >= 0.2);
+      rowRefs.current.forEach((el, i) => {
+        if (el) el.classList.toggle('vis', step >= 1.5 + i * 1.8);
+      });
+      const statVisible = step >= STEPS - 1 // aparece no final, depois de todos os rows
+if (statRef.current && !statRef.current.classList.contains('vis') && statVisible) {
+  statRef.current.classList.add('vis');
+  /* animação de contagem */
+  const el = document.getElementById('count7');
+  if (el) {
+    let n = 0;
+    const interval = setInterval(() => {
+      n++;
+      el.textContent = n;
+      if (n >= 7) clearInterval(interval);
+    }, 80);
+  }
+} else if (!statVisible) {
+  statRef.current?.classList.remove('vis');
+  const el = document.getElementById('count7');
+  if (el) el.textContent = '0';
+}
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <section id="problema">
+      <div className="prob-scroll-track" ref={trackRef}>
+        <div className="prob-sticky">
+          <div className="prob-inner">
+            <p className="prob-label-top" ref={headerRef}>O problema</p>
+            <h2 className="prob-headline" ref={titleRef}>Já passou por isto?</h2>
+            {problems.map((item, i) => (
+              <div key={i} className="prob-row" ref={el => rowRefs.current[i] = el}>
+                <span className="prob-row-num">0{i + 1}</span>
+                <span className="prob-row-text">{item}</span>
+              </div>
+            ))}
+            <div className="prob-stat-wrap" ref={statRef}>
+              <div className="prob-stat-num">+<span id="count7">0</span> em 10</div>
+              <p className="prob-stat-desc">pequenas empresas perdem clientes todos os dias para concorrentes com melhor presença digital.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 
 /* ─────────────────────────────────────────────
    MANIFESTO SECTION
@@ -780,6 +961,96 @@ function ManifestoSection() {
     </section>
   );
 }
+
+/* ─────────────────────────────────────────────
+   Planos bento ITEM
+───────────────────────────────────────────── */
+function PlanosBento() {
+  const boxRefs = useRef([]);
+
+  useEffect(() => {
+    const onMove = (e) => {
+  boxRefs.current.forEach((box) => {
+    if (!box) return;
+    const glow  = box.querySelector('.pb-glow');
+    const track = box.querySelector('.pb-track');
+    if (!glow || !track) return;
+
+    const rect    = track.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left - rect.width / 2;
+    const offsetY = e.clientY - rect.top  - rect.height / 2;
+
+    /* Distância do cursor ao centro do card */
+    const dist = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+    const maxDist = 900;
+    const proximity = Math.max(0, 1 - dist / maxDist);
+
+    /* Glow interior */
+    glow.animate(
+      [{ transform: `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))` }],
+      { duration: 300, fill: 'forwards' }
+    );
+    glow.style.opacity = String(proximity);
+
+    /* Borda via box-shadow — só onde o cursor está próximo */
+    const glowIntensity = (proximity * 0.6).toFixed(2);
+    box.style.boxShadow = proximity > 0.05
+      ? `0 0 0 1.5px rgba(61,142,255,${glowIntensity}), 0 0 ${20 * proximity}px rgba(61,142,255,${(proximity * 0.15).toFixed(2)})`
+      : '';
+  });
+};
+   window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
+  const planos = [
+    {
+      name: 'Flow',
+      tall: false,
+      desc: 'Para negócios que precisam de mais do que visibilidade — precisam de converter. Construímos uma presença digital profissional com landing page otimizada, integração WhatsApp e SEO On-Page para que cada visitante tenha um motivo para entrar em contacto.',
+    },
+    {
+      name: 'One',
+      tall: true,
+      desc: 'O ponto de partida para qualquer negócio local. Otimizamos o seu Google Business Profile para que apareça nas pesquisas certas, no momento certo, para os clientes certos.',
+      },
+    {
+      name: 'Growth',
+      tall: false,
+      desc: 'Para empresas prontas para crescer de forma estruturada. Website completo, CRM, blog SEO e acompanhamento estratégico mensal — a infraestrutura digital que o seu negócio precisa para escalar.',
+    },
+  ];
+
+  return (
+    <div className="planos-bento fade-in">
+      {planos.map((p, i) => (
+        <div
+          key={p.name}
+          className={`plano-box${p.tall ? ' tall' : ''}`}
+          ref={el => boxRefs.current[i] = el}
+        >
+          {/* Elemento glow que segue o cursor */}
+          <div className="pb-track">
+            <div className="pb-glow" />
+          </div>
+          
+
+
+          {/* Conteúdo por cima */}
+          <div className="pb-content">
+  <div className="plano-box-dot" />
+  <div style={{ display:'flex', flexDirection:'column', gap:'1.25rem' }}>
+    <div className="plano-box-name">{p.name}</div>
+    <p className="plano-box-desc">{p.desc}</p>
+    <a href="#contacto" className="plano-box-cta">Saber mais →</a>
+  </div>
+</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 /* ─────────────────────────────────────────────
    FAQ ITEM
@@ -886,81 +1157,30 @@ export default function OndaLanding() {
       {/* ── MANIFESTO ── */}
       <ManifestoSection />
 
-      <section id="problema">
-        <div className="fade-in">
-          <p className="section-label">O problema</p>
-          <h2 className="section-title">Já passou por isto?</h2>
-        </div>
-        <div className="problema-grid fade-in">
-          <ul className="problema-list">
-            {[
-              'A sua empresa existe. O seu serviço é bom. Mas não aparece nas pesquisas do Google.',
-              'O website tem visitas — mas não gera contactos nem pedidos.',
-              'Os leads chegam de forma desorganizada e perdem-se.',
-              'Perde oportunidades por falta de acompanhamento.',
-              'A concorrência com serviços inferiores está a ganhar terreno — apenas por ter melhor presença digital.',
-            ].map((item, i) => (
-              <li key={i}><span className="prob-icon" />{item}</li>
-            ))}
-          </ul>
-          <div className="problema-statement">
-            <p className="prob-stat-label">Negócios sem presença digital estruturada</p>
-            <div className="prob-stat-big">+<span>7 em 10</span></div>
-            <p className="prob-stat-sub">pequenas empresas perdem clientes todos os dias para concorrentes com presença digital mais forte.</p>
-            <div className="prob-divider" />
-            <p className="prob-stat-label">A solução</p>
-            <div className="prob-stat-big" style={{ fontSize:'2rem', color:'var(--offwhite)' }}>Estrutura digital<br />de crescimento.</div>
-            <p className="prob-stat-sub" style={{ marginTop:'0.5rem' }}>Não apenas ferramentas. Sistemas que ajudam a ser encontrado, captar contactos e crescer de forma sustentável.</p>
-          </div>
-        </div>
-      </section>
+      {/* ── PROBLEMA  ── */}
+      <ProblemaSection />
 
       <section id="planos">
-        <div className="planos-header fade-in">
-          <div>
-            <p className="section-label">Pranchas</p>
-            <h2 className="section-title">Escolha a sua prancha</h2>
-          </div>
-          <p className="section-sub">Tal como uma prancha é feita para deslizar sobre as ondas, cada solução é construída para o seu negócio navegar os desafios digitais.</p>
+        <div className="planos-hero fade-in">
+          <p className="section-label">Pranchas</p>
+          <h2 className="planos-hero-title">Quer levar o seu negócio<br />a outro patamar?</h2>
+          <p className="planos-hero-sub">Não apenas criamos soluções — desenhamos pranchas que ajudam marcas a surfar desafios com fluidez, confiança e estilo.</p>
         </div>
-        <div className="planos-grid fade-in">
-          <div className="plano-card">
-            <div className="plano-wave">🌊</div>
-            <div className="plano-nome">One</div>
-            <div className="plano-objetivo">Para negócios que querem ser encontrados no Google e Google Maps.</div>
-            <div className="plano-preco"><span className="plano-currency">€</span><span className="plano-valor">99</span><span className="plano-period">/mês</span></div>
-            <ul className="plano-features">
-              {['Google Business Profile','SEO Local','Gestão e atualização da ficha','Publicações periódicas','Gestão de avaliações','Relatório simplificado'].map((f,i) => (
-                <li key={i}><span className="feat-check">✓</span>{f}</li>
-              ))}
-            </ul>
-            <a href="#contacto" className="btn-ghost" style={{ textAlign:'center' }}>Começar agora</a>
-          </div>
-          <div className="plano-card destaque">
-            <span className="plano-badge">Popular</span>
-            <div className="plano-wave">🌊🌊</div>
-            <div className="plano-nome">Flow</div>
-            <div className="plano-objetivo">Para negócios que precisam de presença profissional focada em conversão.</div>
-            <div className="plano-preco"><span className="plano-currency">€</span><span className="plano-valor">199</span><span className="plano-period">/mês</span></div>
-            <ul className="plano-features">
-              {['Tudo do One +','Landing Page profissional','Formulário de contacto','Integração WhatsApp','Hospedagem e SSL incluídos','SEO On-Page','Alterações mensais'].map((f,i) => (
-                <li key={i}><span className="feat-check">✓</span>{f}</li>
-              ))}
-            </ul>
-            <a href="#contacto" className="btn-primary" style={{ textAlign:'center' }}>Começar agora</a>
-          </div>
-          <div className="plano-card">
-            <div className="plano-wave">🌊🌊🌊</div>
-            <div className="plano-nome">Growth</div>
-            <div className="plano-objetivo">Para empresas que querem crescer de forma consistente e organizada.</div>
-            <div className="plano-preco"><span className="plano-currency">€</span><span className="plano-valor">349</span><span className="plano-period">/mês</span></div>
-            <ul className="plano-features">
-              {['Tudo do Flow +','Website completo','Blog otimizado para SEO','CRM personalizado','Relatórios mensais','Acompanhamento estratégico','Automações incluídas'].map((f,i) => (
-                <li key={i}><span className="feat-check">✓</span>{f}</li>
-              ))}
-            </ul>
-            <a href="#contacto" className="btn-ghost" style={{ textAlign:'center' }}>Começar agora</a>
-          </div>
+
+        <PlanosBento />
+
+        <div className="planos-cta-wrap fade-in">
+          <svg className="spiral-svg" width="420" height="420" viewBox="0 0 120 120" fill="none">
+            <path d="M60 60 m0 -50 a50 50 0 1 1 -0.1 0" stroke="white" strokeWidth="0.8" fill="none" opacity="0.6"/>
+            <path d="M60 60 m0 -40 a40 40 0 1 1 -0.1 0" stroke="white" strokeWidth="0.7" fill="none" opacity="0.5"/>
+            <path d="M60 60 m0 -30 a30 30 0 1 1 -0.1 0" stroke="white" strokeWidth="0.6" fill="none" opacity="0.4"/>
+            <path d="M60 60 m0 -20 a20 20 0 1 1 -0.1 0" stroke="white" strokeWidth="0.5" fill="none" opacity="0.3"/>
+            <path d="M60 60 m0 -10 a10 10 0 1 1 -0.1 0" stroke="white" strokeWidth="0.4" fill="none" opacity="0.2"/>
+          </svg>
+          <p className="planos-cta-title">Quer surfar nesta <span>ONDA?</span></p>
+          <a href="#contacto" className="btn-primary" style={{ fontSize:'1rem', padding:'0.9rem 2.2rem' }}>
+            Vem com a gente
+          </a>
         </div>
       </section>
 
