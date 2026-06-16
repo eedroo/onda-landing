@@ -1,69 +1,132 @@
-# 🌊 Onda — Landing Page
+# 🌊 Onda — Agência de Crescimento Digital
 
-Landing page da agência Onda construída em React + Three.js.
+Landing page da agência **Onda**, construída em **React + Vite + Three.js**.
 
-## Setup
+Projeto desenvolvido como base para o site institucional da agência, com foco em experiência visual, animações 3D controladas por scroll e design editorial moderno.
+
+---
+
+## Tecnologias
+
+| Tecnologia | Utilização |
+|---|---|
+| React 18 | Componentes e gestão de estado |
+| Vite | Bundler e servidor de desenvolvimento |
+| Three.js | Objetos 3D wireframe e animações no hero |
+| CSS (in-JS) | Estilos globais injetados via `dangerouslySetInnerHTML` |
+
+---
+
+## Estrutura do projeto
+onda-landing/
+
+├── public/
+
+│   └── favicon.png
+
+├── src/
+
+│   ├── main.jsx            # Ponto de entrada React
+
+│   ├── App.jsx             # Componente raiz
+
+│   └── OndaLanding.jsx     # Landing page completa
+
+├── index.html
+
+├── vite.config.js
+
+├── package.json
+
+└── README.md
+---
+
+## Instalação e desenvolvimento
 
 ```bash
-# Instalar dependências
+# 1. Clonar o repositório
+git clone https://github.com/eedroo/onda-landing.git
+cd onda-landing
+
+# 2. Instalar dependências
 npm install
 
-# Desenvolvimento local (com hot reload)
+# 3. Iniciar servidor de desenvolvimento
 npm run dev
-
-# Build para produção
-npm run build
 ```
 
-## Estrutura
+Abre `http://localhost:5173` no browser.
 
-```
-/
-├── index.html          # Entry HTML
-├── main.jsx            # React root
-├── App.jsx             # App wrapper
-├── OndaLanding.jsx     # Componente principal (tudo numa página)
-├── vite.config.js      # Config Vite
-└── package.json
-```
+---
 
-## Three.js — Animação do Hero
+## Build para produção
 
-O canvas 3D está no componente `HeroCanvas` dentro de `OndaLanding.jsx`.
-
-### Como funciona:
-- 5 objetos geométricos (Torus, Sphere, Icosahedron, TorusKnot, Octahedron) em wireframe
-- Flutuam com `Math.sin(time)` — movimento orgânico
-- Respondem ao `window.scrollY` — uns sobem, outros descem (parallax)
-- Opacidade diminui conforme saem do viewport
-- Cores: branco 6% opacity + azul acento 12% opacity
-
-### Personalizar objetos:
-Em `HeroCanvas`, o array `objects` tem 5 entradas com:
-- `x` — posição horizontal
-- `baseY` — posição vertical base
-- `speed` — velocidade da animação flutuante
-- `phase` — offset de fase (para que não se movam em sincronia)
-
-### Adicionar mais geometrias Three.js:
-```js
-import { SphereGeometry, BoxGeometry, ConeGeometry, ... } from 'three'
-// qualquer geometria Three.js funciona
-```
-
-## Próximos passos sugeridos
-
-1. **Múltiplas páginas** — adicionar React Router para Sobre Nós, Blog, etc.
-2. **CMS para o Blog** — integrar Sanity, Contentful, ou ficheiros MDX
-3. **Formulário** — ligar ao backend (Supabase, Resend, FormSubmit, etc.)
-4. **Animações de entrada** — framer-motion para os cards dos planos
-5. **Cursor personalizado** — cursor circular que reage ao scroll
-6. **Parallax avançado** — usar `@react-three/fiber` + `@react-three/drei` para mais controlo
-
-## Deploy
-
-Compatible com Vercel, Netlify, Cloudflare Pages:
 ```bash
 npm run build
-# fazer upload da pasta /dist
 ```
+
+Gera a pasta `/dist` com todos os ficheiros otimizados prontos para deploy.
+
+---
+
+## Deploy (cPanel / GoDaddy)
+
+1. Correr `npm run build` localmente
+2. Fazer upload do **conteúdo** da pasta `/dist` para `public_html` via File Manager ou FTP
+3. Criar ficheiro `.htaccess` em `public_html` com o seguinte conteúdo:
+Options -MultiViews
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^ index.html [QL]
+---
+
+## Funcionalidades
+
+### Hero — Three.js
+- 5 objetos geométricos wireframe (Torus, Sphere, Icosahedron, TorusKnot, Octahedron)
+- Movimento horizontal e vertical controlado pelo scroll
+- Rotação sincronizada com a posição do scroll — avança ao descer, recua ao subir
+- Escala cresce com o scroll
+- Blur progressivo simulando profundidade de campo
+- Fade out ao sair do viewport
+
+### Manifesto
+- Layout em grelha com dodecaedros wireframe animados (Three.js)
+- Efeito typewriter por scroll — letras reveladas conforme o utilizador desce
+- Animação de entrada com slide
+
+### Problema
+- Scroll storytelling — conteúdo fixo (sticky) com elementos que aparecem progressivamente
+- Animação de contagem no número "+7 em 10"
+- Cada item entra com slide da direita
+
+### Planos (Bento Grid)
+- Glow cursor — efeito de luz que segue o cursor globalmente entre os cards
+- Layout assimétrico com card destacado (Flow)
+
+### Outras secções
+- Método Onda (4 passos)
+- Diferencial competitivo
+- Creative.Onda
+- FAQ com accordion
+- Formulário de qualificação
+- Footer
+
+---
+
+## Roadmap
+
+- [ ] Ligar formulário a serviço de email (Resend / Formspree)
+- [ ] Adicionar React Router para páginas internas (Sobre Nós, Blog, Creative)
+- [ ] CMS para o Blog (Sanity ou MDX)
+- [ ] Versão mobile otimizada
+- [ ] Página de obrigado após submissão do formulário
+
+---
+
+## Autor
+
+Desenvolvido por **Eduardo Pereira** para a agência [Onda](https://onda.work).
