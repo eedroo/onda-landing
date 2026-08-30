@@ -7,10 +7,10 @@ async function loadComponents() {
     try {
 
         const headerResponse =
-            await fetch('components/header.html');
+            await fetch('/diego/components/header.html');
 
         const footerResponse =
-            await fetch('components/footer.html');
+            await fetch('/diego/components/footer.html');
 
         const headerHTML =
             await headerResponse.text();
