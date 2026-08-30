@@ -1,0 +1,280 @@
+/* ==========================================
+   HERO
+========================================== */
+
+.contact-hero {
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+
+  padding-top: 120px;
+}
+
+.contact-hero-content {
+  max-width: 900px;
+}
+
+.contact-hero-content h1 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 96px;
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  margin-bottom: 40px;
+
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 35%,
+    rgba(28,117,158,.50) 50%,
+    var(--blue) 65%,
+    var(--blue) 100%
+  );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 11s ease-in-out infinite;
+}
+
+.contact-hero-content p:last-child {
+  max-width: 620px;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.6);
+}
+
+
+/* ==========================================
+   CONTACT INFO
+========================================== */
+
+.contact-info {
+  padding: 120px 0;
+}
+
+.info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 32px;
+}
+
+.info-card {
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.03);
+}
+
+.info-card span {
+  display: block;
+
+  margin-bottom: 16px;
+
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: rgba(0,0,0,.45);
+}
+
+.info-card h3 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  color: var(--blue);
+}
+
+.info-card p {
+  margin-top: 12px;
+
+  color: rgba(0,0,0,.6);
+
+  line-height: 1.8;
+}
+
+
+/* ==========================================
+   CTA
+========================================== */
+
+.contact-cta {
+  padding: 120px 0;
+}
+
+.contact-cta-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 100px;
+
+  align-items: center;
+}
+
+
+/* CONTENT */
+
+.contact-cta-content h2 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 92px;
+  line-height: .92;
+
+  letter-spacing: -5px;
+
+  color: var(--blue);
+
+  margin-bottom: 32px;
+
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 35%,
+    rgba(28,117,158,.50) 50%,
+    var(--blue) 65%,
+    var(--blue) 100%
+  );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 11s ease-in-out infinite;
+}
+
+.contact-cta-content p:last-child {
+  max-width: 520px;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.6);
+}
+
+
+/* IMAGE */
+
+.contact-image {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 560px;
+
+  height: 720px;
+}
+
+
+.contact-card img {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  z-index: 2;
+}
+
+
+/* ==========================================
+   HOVER LINKS
+========================================== */
+
+.info-card a {
+  color: inherit;
+  text-decoration: none;
+
+  transition: .3s ease;
+}
+
+.info-card a:hover {
+  color: var(--primary);
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 980px) {
+
+  .contact-hero {
+    min-height: auto;
+    padding-top: 180px;
+  }
+
+  .contact-hero-content h1 {
+    font-size: 64px;
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-cta-grid {
+    grid-template-columns: 1fr;
+
+    gap: 80px;
+  }
+
+  .contact-cta-content h2 {
+    font-size: 64px;
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+  }
+
+  .contact-card {
+    height: 580px;
+  }
+
+
+}
+
+
+@media (max-width: 768px) {
+
+  .contact-hero-content h1 {
+    font-size: 52px;
+  }
+
+  .contact-cta-content h2 {
+    font-size: 52px;
+  }
+
+  .info-card {
+    padding: 32px;
+  }
+
+  .info-card h3 {
+    font-size: 22px;
+  }
+
+}

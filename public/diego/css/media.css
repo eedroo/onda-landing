@@ -1,0 +1,291 @@
+/* ==========================================
+   HERO
+========================================== */
+
+.media-hero {
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+
+  padding-top: 120px;
+}
+
+.media-hero-content {
+  max-width: 900px;
+}
+
+.media-hero-content h1 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 96px;
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  margin-bottom: 40px;
+
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 35%,
+    rgba(28,117,158,.50) 50%,
+    var(--blue) 65%,
+    var(--blue) 100%
+  );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 11s ease-in-out infinite;
+}
+
+.media-hero-content p:last-child {
+  max-width: 620px;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.6);
+}
+
+
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+.section-header {
+  margin-bottom: 70px;
+}
+
+.section-header h2 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 72px;
+  line-height: .95;
+
+  letter-spacing: -4px;
+
+  color: var(--blue);
+
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 35%,
+    rgba(28,117,158,.50) 50%,
+    var(--blue) 65%,
+    var(--blue) 100%
+  );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 11s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   ARTICLES
+========================================== */
+
+.latest-updates {
+  padding: 120px 0;
+}
+
+.articles-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 32px;
+}
+
+
+/* ==========================================
+   ARTICLE CARD
+========================================== */
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+
+  text-decoration: none;
+
+  background: white;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  transition: .4s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.03);
+}
+
+.article-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.08);
+}
+
+
+/* IMAGE */
+
+.article-image {
+  overflow: hidden;
+}
+
+.article-image img {
+  width: 100%;
+  height: 280px;
+
+  object-fit: cover;
+
+  transition: .6s ease;
+}
+
+.article-card:hover .article-image img {
+  transform: scale(1.05);
+}
+
+
+/* CONTENT */
+
+.article-content {
+  padding: 32px;
+}
+
+.article-date {
+  display: block;
+
+  margin-bottom: 16px;
+
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: rgba(0,0,0,.45);
+}
+
+.article-content h3 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  color: var(--blue);
+
+  margin-bottom: 24px;
+}
+
+.read-more {
+  color: var(--primary);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: .5px;
+}
+
+
+/* ==========================================
+   FEATURED ARTICLE (FUTURE USE)
+========================================== */
+
+.featured-article {
+  margin-bottom: 80px;
+}
+
+.featured-article .article-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.featured-article .article-image img {
+  height: 100%;
+}
+
+
+/* ==========================================
+   LOAD MORE (FUTURE USE)
+========================================== */
+
+.media-actions {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 60px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 980px) {
+
+  .media-hero {
+    min-height: auto;
+    padding-top: 180px;
+  }
+
+  .media-hero-content h1 {
+    font-size: 64px;
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+  }
+
+  .section-header h2 {
+    font-size: 54px;
+
+    line-height: .95;
+
+    letter-spacing: -3px;
+  }
+
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-image img {
+    height: 240px;
+  }
+
+  .article-content {
+    padding: 28px;
+  }
+
+  .article-content h3 {
+    font-size: 24px;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .latest-updates {
+    padding: 100px 0;
+  }
+
+  .media-hero-content h1 {
+    font-size: 52px;
+  }
+
+  .section-header h2 {
+    font-size: 44px;
+  }
+
+  .article-content h3 {
+    font-size: 22px;
+  }
+
+}
