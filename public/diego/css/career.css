@@ -50,10 +50,10 @@
 .career-bg {
   position: absolute;
 
-  width: 480px;
-  height: 540px;
+  width: 60%;
+  height: 55%;
 
-  right: -20px;
+  right: 0;
   bottom: 0;
 
   border-radius: 34px;
@@ -64,12 +64,18 @@
 }
 
 .career-image-card img {
-  position: relative;
+  position: absolute;
 
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
 
-  object-fit: contain;
+  width: 85%;
+  height: 85%;
+
+  object-fit: cover;
+
+  border-radius: 34px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.18);
 
   z-index: 2;
 }
@@ -288,14 +294,7 @@
   }
 
   .career-image-card {
-    height: 580px;
-  }
-
-  .career-bg {
-    width: 100%;
-    height: 420px;
-
-    right: 0;
+    height: 500px;
   }
 
   .section-header h2 {
