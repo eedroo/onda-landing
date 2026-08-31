@@ -182,7 +182,8 @@
   width: 100%;
   max-width: 560px;
 
-  height: 720px;
+  padding-right: 40px;
+  padding-bottom: 40px;
 }
 
 .contact-card::before {
@@ -190,8 +191,8 @@
 
   position: absolute;
 
-  width: 60%;
-  height: 55%;
+  width: 65%;
+  height: 65%;
 
   right: 0;
   bottom: 0;
@@ -204,15 +205,13 @@
 }
 
 .contact-card img {
-  position: absolute;
+  position: relative;
 
-  top: 0;
-  left: 0;
-
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  aspect-ratio: 16 / 9;
 
   object-fit: cover;
+  object-position: center;
 
   border-radius: 34px;
   box-shadow: 0 30px 60px rgba(0,0,0,.18);
@@ -275,7 +274,8 @@
   }
 
   .contact-card {
-    height: 500px;
+    padding-right: 24px;
+    padding-bottom: 24px;
   }
 
 
