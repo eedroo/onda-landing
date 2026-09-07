@@ -1,0 +1,579 @@
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 120px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-grid > * {
+  min-width: 0;
+}
+
+/* TEXT */
+
+.tag {
+  color: var(--blue);
+  margin-bottom: 18px;
+  font-size: 15px;
+  opacity: .7;
+}
+
+.hero-text h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 92px;
+  line-height: .95;
+  letter-spacing: -4px;
+  margin-bottom: 30px;
+  color: var(--blue);
+}
+
+.description {
+  max-width: 420px;
+
+  font-size: 18px;
+  line-height: 1.8;
+
+  color: rgba(0,0,0,.6);
+
+  margin-bottom: 40px;
+}
+
+/* IMAGE */
+
+.hero-image {
+  position: relative;
+}
+
+.image-card {
+  position: relative;
+  background: var(--blue);
+  border-radius: 34px;
+  overflow: hidden;
+  min-height: 720px;
+}
+
+.green-circle {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+
+  right: -180px;
+  bottom: -180px;
+
+  z-index: 1;
+}
+
+.diego-player {
+  position: absolute;
+
+  bottom: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 50%;
+
+  z-index: 4;
+
+  filter:
+    drop-shadow(0 0 20px rgba(145,162,115,.18))
+    drop-shadow(0 0 60px rgba(145,162,115,.10));
+}
+
+.ball {
+  pointer-events: none;
+  will-change: transform, filter;
+}
+
+.ball-back {
+  position: absolute;
+
+  width: 200px;
+
+  bottom: 40px;
+  left: -40px;
+
+  z-index: 2;
+
+  opacity: .98;
+
+  filter:
+    blur(3px)
+    drop-shadow(0 30px 60px rgba(0,0,0,.18));
+}
+
+.ball-main {
+  position: absolute;
+
+  width: 420px;
+
+  top: -120px;
+  right: -180px;
+
+  z-index: 10;
+
+  opacity: .98;
+
+  filter:
+    blur(2px)
+    drop-shadow(0 30px 60px rgba(0,0,0,.18));
+}
+
+/* ==========================================
+   SHIMMER HEADINGS
+========================================== */
+
+.hero-text h1,
+.about-heading h2, 
+.media-content h2{
+
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 35%,
+    rgba(28,117,158,.50) 50%,
+    var(--blue) 65%,
+    var(--blue) 100%
+  );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 11s ease-in-out infinite;
+}
+
+/* ==========================================
+   ABOUT
+========================================== */
+
+.about-section {
+  padding: 120px 0;
+  position: relative;
+  overflow: visible;
+}
+
+.about-heading {
+  text-align: center;
+
+  max-width: 920px;
+
+  margin: auto;
+  margin-bottom: 90px;
+}
+
+.about-heading h2 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 92px;
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  color: var(--blue);
+
+  margin-bottom: 40px;
+}
+
+.about-description {
+  max-width: 760px;
+
+  margin: auto;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.55);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-image {
+  position: relative;
+}
+
+.about-card {
+  position: relative;
+
+  max-width: 680px;
+  min-height: 520px;
+
+  margin: auto;
+
+  overflow: hidden;
+  border-radius: 34px;
+
+  background: transparent;
+}
+
+.about-player {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 34px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.about-ball {
+  position: absolute;
+  pointer-events: none;
+}
+
+.about-ball-small {
+  width: 180px;
+
+  top: 80px;
+  left: -60px;
+
+  z-index: 4;
+
+  filter:
+    blur(2px)
+    drop-shadow(0 20px 40px rgba(0,0,0,.18));
+}
+
+.about-ball-large {
+  width: 420px;
+
+  top: -80px;
+  right: -180px;
+
+  z-index: 4;
+
+  filter:
+    blur(2px)
+    drop-shadow(0 30px 60px rgba(0,0,0,.20));
+}
+
+/* HIGHLIGHTS */
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.highlight-item {
+  padding-left: 20px;
+  border-left: 2px solid rgba(10,62,100,.12);
+}
+
+.highlight-label {
+  display: block;
+
+  font-size: 12px;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  color: rgba(0,0,0,.45);
+
+  margin-bottom: 8px;
+}
+
+.highlight-value {
+  display: block;
+
+  font-family: 'Sora', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+
+  color: var(--blue);
+}
+
+/* ==========================================
+   PHILOSOPHY
+========================================== */
+
+.philosophy-section {
+  padding: 120px 0;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.philosophy-image {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.philosophy-image img {
+  width: 100%;
+  height: 680px;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 28px;
+}
+
+.philosophy-content h2 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 96px;
+
+  line-height: .92;
+  letter-spacing: -5px;
+
+  color: var(--blue);
+
+  margin-bottom: 40px;
+}
+
+.philosophy-content p:last-child {
+  max-width: 520px;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.6);
+}
+
+/* =========================
+   MEDIA SECTION
+========================= */
+
+.media-section {
+    padding: 120px 0;
+}
+
+.media-content {
+    max-width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.media-content h2 {
+    font-family: 'Sora', sans-serif;
+
+    font-size: 92px;
+    line-height: .92;
+    letter-spacing: -5px;
+
+    color: var(--blue);
+}
+
+.media-content a.btn {
+    width: fit-content;
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+/* ==========================================
+   CTA
+========================================== */
+
+.cta-section {
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.cta-content h2 {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 96px;
+  line-height: .9;
+
+  letter-spacing: -5px;
+
+  color: var(--blue);
+
+  margin-bottom: 30px;
+}
+
+.cta-content p {
+  max-width: 520px;
+
+  font-size: 18px;
+  line-height: 2;
+
+  color: rgba(0,0,0,.55);
+}
+
+.cta-image {
+  position: relative;
+}
+
+.cta-card {
+  position: relative;
+
+  min-height: 700px;
+
+  overflow: hidden;
+  border-radius: 34px;
+
+  background: var(--blue);
+}
+
+.cta-player {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.cta-ball {
+  position: absolute;
+
+  width: 180px;
+
+  right: -60px;
+  bottom: -40px;
+
+  z-index: 5;
+
+  filter:
+    blur(2px)
+    drop-shadow(0 20px 40px rgba(0,0,0,.18));
+}
+
+/* ==========================================
+   HOME RESPONSIVE
+========================================== */
+
+@media (max-width: 980px) {
+
+  .hero {
+    overflow: visible;
+  }
+
+  .hero-grid,
+  .philosophy-grid,
+  .cta-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid,
+  .philosophy-grid,
+  .cta-grid {
+    gap: 60px;
+  }
+
+  .hero-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-card {
+    width: 100%;
+    max-width: 420px;
+    min-height: 520px;
+  }
+
+  .hero-text {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text h1,
+  .about-heading h2,
+  .philosophy-content h2,
+  .cta-content h2 {
+    font-size: 56px;
+    line-height: .95;
+    letter-spacing: -3px;
+  }
+
+  .description {
+    margin: auto auto 40px;
+  }
+
+  .ball-main {
+    width: 300px;
+    right: -100px;
+    top: -60px;
+  }
+
+  .diego-player {
+    width: 60%;
+  }
+
+  .about-ball-large {
+    width: 240px;
+    top: -40px;
+    right: -100px;
+  }
+
+  .about-ball-small {
+    width: 120px;
+    left: -20px;
+    top: 40px;
+  }
+
+  .philosophy-image {
+    max-width: 100%;
+  }
+
+  .philosophy-image img {
+    height: 500px;
+  }
+
+  .media-content h2 {
+    font-family: 'Sora', sans-serif;
+
+  font-size: 92px;
+  line-height: .92;
+  letter-spacing: -5px;
+
+  color: var(--blue);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .media-content {
+    gap: 24px;
+  }
+
+  .media-content h2 {
+    font-size: 52px;
+    line-height: 1;
+  }
+
+}
