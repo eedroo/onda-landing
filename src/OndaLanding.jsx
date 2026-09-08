@@ -262,7 +262,7 @@ const css = `
   }
   .planos-bento {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 1rem;
   }
@@ -843,11 +843,11 @@ function ProblemaSection() {
   const statRef   = useRef(null);
 
   const problems = [
-    'A sua empresa existe. O serviço é bom. Mas não aparece nas pesquisas do Google.',
-    'O website tem visitas — mas não gera contactos nem pedidos.',
-    'Os leads chegam de forma desorganizada e perdem-se.',
-    'Perde oportunidades por falta de acompanhamento.',
-    'A concorrência com serviços inferiores ganha terreno apenas por ter melhor presença digital.',
+    'A sua empresa funciona, mas muitos processos ainda dependem de WhatsApp, Excel, emails e tarefas manuais.',
+    'A informação está espalhada por diferentes ferramentas e é difícil saber exatamente o que está a acontecer.',
+    'A equipa perde tempo com tarefas repetitivas que poderiam ser automatizadas.',
+    'Os clientes chegam por diferentes canais, mas não existe um sistema central para acompanhar cada oportunidade.',
+    'O negócio cresceu — mas a estrutura digital não acompanhou esse crescimento.',
   ];
 
   useEffect(() => {
@@ -906,7 +906,7 @@ if (statRef.current && !statRef.current.classList.contains('vis') && statVisible
             ))}
             <div className="prob-stat-wrap" ref={statRef}>
               <div className="prob-stat-num">+<span id="count7">0</span> em 10</div>
-              <p className="prob-stat-desc">pequenas empresas perdem clientes todos os dias para concorrentes com melhor presença digital.</p>
+              <p className="prob-stat-desc">empresas ainda dependem de processos manuais que fazem perder tempo, informação e oportunidades. O problema nem sempre é falta de trabalho — é falta de estrutura.</p>
             </div>
           </div>
         </div>
@@ -924,8 +924,8 @@ if (statRef.current && !statRef.current.classList.contains('vis') && statVisible
 function ManifestoSection() {
   useScrollTypewriter('manifesto');
 
-  const line1 = 'Na Onda, acreditamos no poder de transformar empresas em experiências que conectam e inspiram.';
-  const line2 = 'Assim como as ondas do oceano, somos guiados pelo movimento, pela energia e pela unicidade de cada projeto.';
+  const line1 = 'Na Onda, acreditamos que a tecnologia deve adaptar-se ao negócio — e não o contrário.';
+  const line2 = 'Transformamos processos manuais, informação dispersa e tarefas repetitivas em sistemas mais simples, conectados e preparados para evoluir.';
 
   return (
     <section id="manifesto">
@@ -954,7 +954,7 @@ function ManifestoSection() {
           <TypewriterText text={line2} />
         </p>
         <p className="manifesto-sub">
-          <TypewriterText text="Agência de Crescimento Digital · Lisboa" />
+          <TypewriterText text="Digitalização · Sistemas · Automação · Crescimento" />
         </p>
       </div>
 
@@ -1005,19 +1005,24 @@ function PlanosBento() {
 
   const planos = [
     {
-      name: 'Flow',
+      name: 'One',
       tall: false,
-      desc: 'Para negócios que precisam de mais do que visibilidade — precisam de converter. Construímos uma presença digital profissional com landing page otimizada, integração WhatsApp e SEO On-Page para que cada visitante tenha um motivo para entrar em contacto.',
+      desc: 'Para negócios que precisam de ser encontrados. Otimizamos a presença da sua empresa no Google, trabalhamos SEO local, avaliações e conteúdo para aumentar a visibilidade e facilitar que novos clientes encontrem o seu negócio. A partir de €99 + IVA/mês.',
     },
     {
-      name: 'One',
-      tall: true,
-      desc: 'O ponto de partida para qualquer negócio local. Otimizamos o seu Google Business Profile para que apareça nas pesquisas certas, no momento certo, para os clientes certos.',
-      },
-    {
-      name: 'Growth',
+      name: 'Websites',
       tall: false,
-      desc: 'Para empresas prontas para crescer de forma estruturada. Website completo, CRM, blog SEO e acompanhamento estratégico mensal — a infraestrutura digital que o seu negócio precisa para escalar.',
+      desc: 'A sua empresa merece mais do que uma presença online. Criamos websites profissionais, rápidos e pensados para apresentar o negócio, comunicar os seus serviços e transformar visitantes em oportunidades. Landing pages, websites institucionais e plataformas digitais. Desde €249 + IVA.',
+    },
+    {
+      name: 'Solutions',
+      tall: false,
+      desc: 'Transformamos processos empresariais em sistemas digitais. Mapeamos como a sua empresa funciona e desenvolvemos sistemas personalizados para organizar clientes, equipas, processos, dados e operações. CRM, dashboards, gestão, reservas, workflows e integrações. Projetos personalizados.',
+    },
+    {
+      name: 'Automation',
+      tall: false,
+      desc: 'Faça a tecnologia trabalhar por si. Automatizamos tarefas, conectamos ferramentas e utilizamos IA para reduzir trabalho manual, acelerar processos e tornar a operação mais eficiente. Emails, notificações, workflows, lead capture, relatórios, chatbots e assistentes IA. Projetos personalizados.',
     },
   ];
 
@@ -1042,7 +1047,7 @@ function PlanosBento() {
   <div style={{ display:'flex', flexDirection:'column', gap:'1.25rem' }}>
     <div className="plano-box-name">{p.name}</div>
     <p className="plano-box-desc">{p.desc}</p>
-    <a href="#contacto" className="plano-box-cta">Saber mais →</a>
+    <a href="#contacto" className="plano-box-cta">Conhecer →</a>
   </div>
 </div>
         </div>
@@ -1098,7 +1103,7 @@ export default function OndaLanding() {
 
   const [form, setForm] = useState({
     nome:'', email:'', telefone:'', empresa:'', website:'',
-    setor:'', faturacao:'', orcamento:'', objetivo:'', origem:''
+    setor:'', objetivo:'', origem:'', mensagem:''
   });
   const [sent, setSent] = useState(false);
 
@@ -1108,12 +1113,14 @@ export default function OndaLanding() {
   };
 
   const faqs = [
-    { q: 'Qual é o investimento para trabalhar com a Onda?', a: 'Os nossos serviços começam a partir de 99€/mês. O investimento final depende dos objetivos, da estrutura digital atual e das necessidades de cada negócio. Na reunião estratégica identificamos a solução mais adequada.' },
-    { q: 'Trabalham com contratos de fidelização?', a: 'Acreditamos que as parcerias devem existir porque fazem sentido para ambas as partes. Trabalhamos com um compromisso mínimo de 3 meses — necessário para implementar, analisar e otimizar. Após esse período, a continuidade depende dos resultados obtidos.' },
-    { q: 'Em quanto tempo posso esperar resultados?', a: 'Cada negócio tem um ponto de partida diferente. Algumas melhorias são percebidas nas primeiras semanas; estratégias de SEO e posicionamento local geram resultados mais consistentes ao longo dos meses.' },
-    { q: 'Como medem os resultados?', a: 'Definimos indicadores claros no início: contactos gerados, pedidos de orçamento, chamadas, visibilidade no Google, conversões. Recebe relatórios periódicos e acompanhamento contínuo.' },
-    { q: 'A Onda garante resultados?', a: 'Garantimos estratégia, implementação e otimização contínua. Os resultados dependem também de fatores externos — mercado, concorrência, qualidade da oferta. Trabalhamos com objetivos realistas e total transparência.' },
-    { q: 'Trabalham com empresas do meu setor?', a: 'Sim. Trabalhamos com hotelaria, turismo, wellness, restauração, marcas de lifestyle e pequenos negócios locais. O mais importante é a vontade de crescer digitalmente.' },
+    { q: 'Quanto custa trabalhar com a Onda?', a: 'Depende do tipo de solução. Temos serviços com preços definidos, como a nossa presença digital e websites, e projetos personalizados de software, automação e IA que são orçamentados de acordo com a complexidade. Os projetos começam em €249 + IVA para websites e €99 + IVA/mês para presença digital.' },
+    { q: 'A Onda trabalha apenas com empresas de Lisboa?', a: 'Não. A Onda está sediada em Lisboa e trabalha com empresas em Portugal e noutros mercados através de processos digitais.' },
+    { q: 'Vocês fazem apenas websites?', a: 'Não. Websites são apenas uma das nossas soluções. Desenvolvemos também software personalizado, sistemas internos, automações e soluções com IA.' },
+    { q: 'Preciso saber exatamente o que a minha empresa precisa antes de contactar a Onda?', a: 'Não. Aliás, preferimos que não. Começamos por compreender o problema e a forma como a empresa funciona. A partir daí, identificamos a solução mais adequada.' },
+    { q: 'Quanto tempo demora um projeto?', a: 'Depende do projeto. Uma landing page pode ser desenvolvida rapidamente, enquanto sistemas personalizados exigem diagnóstico, planeamento, desenvolvimento e testes. O prazo é definido antes do início do projeto.' },
+    { q: 'A Onda trabalha com manutenção depois do projeto?', a: 'Sim. Depois da implementação, podemos continuar a acompanhar a solução através de manutenção, suporte e evolução, de acordo com as necessidades do negócio.' },
+    { q: 'Posso contratar apenas uma automação?', a: 'Sim. Automação e IA podem ser contratadas como projetos independentes ou integradas num website ou sistema desenvolvido pela Onda.' },
+    { q: 'Trabalham com o meu setor?', a: 'Trabalhamos com diferentes tipos de negócios. Temos particular interesse em empresas de serviços, hotelaria, turismo, wellness, saúde, restauração, retalho e negócios que dependem de processos digitais para crescer.' },
   ];
 
   return (
@@ -1124,7 +1131,7 @@ export default function OndaLanding() {
         <a href="#hero" className="nav-logo">✦ ONDA</a>
         <ul className="nav-links">
           <li><a href="#problema">Sobre nós</a></li>
-          <li><a href="#planos">Serviços</a></li>
+          <li><a href="#planos">Solutions</a></li>
           <li><a href="#metodo">Método</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -1134,18 +1141,18 @@ export default function OndaLanding() {
       <section id="hero">
         <HeroCanvas />
         <div className="hero-content">
-          <p className="hero-eyebrow">Agência de Crescimento Digital · Lisboa</p>
+          <p className="hero-eyebrow">Transformação Digital · Lisboa</p>
           <h1 className="hero-h1">
-            Navegue nas Ondas<br />
-            do Marketing<br />
-            <em>com Confiança.</em>
+            Transformamos negócios<br />
+            em sistemas que<br />
+            <em>trabalham melhor.</em>
           </h1>
           <p className="hero-sub">
-            Presença digital, SEO local e automações que transformam visitantes em oportunidades reais.
+            Criamos websites, sistemas personalizados e automações que transformam processos empresariais em estruturas digitais mais simples, organizadas e eficientes.
           </p>
           <div className="hero-actions">
-            <a href="#contacto" className="btn-primary">Transforme a sua empresa hoje</a>
-            <a href="#planos" className="btn-ghost">Conhecer Soluções</a>
+            <a href="#contacto" className="btn-primary">Transformar o meu negócio</a>
+            <a href="#planos" className="btn-ghost">Conhecer Solutions</a>
           </div>
         </div>
         <div className="hero-scroll">
@@ -1163,8 +1170,8 @@ export default function OndaLanding() {
       <section id="planos">
         <div className="planos-hero fade-in">
           <p className="section-label">Pranchas</p>
-          <h2 className="planos-hero-title">Quer levar o seu negócio<br />a outro patamar?</h2>
-          <p className="planos-hero-sub">Não apenas criamos soluções — desenhamos pranchas que ajudam marcas a surfar desafios com fluidez, confiança e estilo.</p>
+          <h2 className="planos-hero-title">Encontre a solução<br />certa para o seu negócio.</h2>
+          <p className="planos-hero-sub">Da presença digital à transformação da operação, construímos a estrutura necessária para o próximo movimento da sua empresa.</p>
         </div>
 
         <PlanosBento />
@@ -1177,9 +1184,9 @@ export default function OndaLanding() {
             <path d="M60 60 m0 -20 a20 20 0 1 1 -0.1 0" stroke="white" strokeWidth="0.5" fill="none" opacity="0.3"/>
             <path d="M60 60 m0 -10 a10 10 0 1 1 -0.1 0" stroke="white" strokeWidth="0.4" fill="none" opacity="0.2"/>
           </svg>
-          <p className="planos-cta-title">Quer surfar nesta <span>ONDA?</span></p>
+          <p className="planos-cta-title">Quer levar o seu negócio para o próximo <span>nível?</span></p>
           <a href="#contacto" className="btn-primary" style={{ fontSize:'1rem', padding:'0.9rem 2.2rem' }}>
-            Vem com a gente
+            Falar com a Onda
           </a>
         </div>
       </section>
@@ -1191,10 +1198,10 @@ export default function OndaLanding() {
         </div>
         <div className="metodo-steps fade-in">
           {[
-            { n:'01', title:'Diagnóstico', desc:'Analisamos o negócio, mercado, concorrência e presença digital atual.' },
-            { n:'02', title:'Construção',  desc:'Implementamos a solução mais adequada: Google Business, website, CRM, SEO.' },
-            { n:'03', title:'Otimização',  desc:'Analisamos dados e comportamento. Realizamos melhorias contínuas.' },
-            { n:'04', title:'Crescimento', desc:'SEO avançado, automações, IA e expansão digital progressiva.' },
+            { n:'01', title:'Diagnóstico', desc:'Começamos pelo negócio. Entendemos os seus objetivos, processos, ferramentas, desafios e oportunidades.' },
+            { n:'02', title:'Estratégia',  desc:'Desenhamos a solução. Definimos o que deve ser construído, integrado ou automatizado — e o que não precisa de ser.' },
+            { n:'03', title:'Construção',  desc:'Transformamos a estratégia em tecnologia. Desenvolvemos websites, sistemas, integrações e automações adaptados à realidade da empresa.' },
+            { n:'04', title:'Evolução',    desc:'Uma boa solução não termina no lançamento. Analisamos resultados, recolhemos feedback e evoluímos a estrutura à medida que o negócio cresce.' },
           ].map(s => (
             <div key={s.n} className="metodo-step">
               <div className="step-num">{s.n}</div>
@@ -1208,13 +1215,13 @@ export default function OndaLanding() {
       <section id="diferencial">
         <div className="fade-in">
           <p className="section-label">Porquê a Onda</p>
-          <h2 className="section-title">Menos complexidade.<br />Mais resultado.</h2>
+          <h2 className="section-title">Menos ferramentas.<br />Mais estrutura.</h2>
         </div>
         <div className="dif-grid fade-in">
           <div className="dif-card">
-            <div className="dif-card-title">O que as outras agências vendem</div>
+            <div className="dif-card-title">O que muitas empresas acabam por ter</div>
             <div className="dif-items">
-              {['Websites isolados','Redes sociais genéricas','Design sem estratégia','Contratos longos sem resultados'].map((item,i) => (
+              {['Ferramentas desconectadas','Processos manuais','Informação espalhada','Tarefas repetitivas','Sistemas que não acompanham o negócio'].map((item,i) => (
                 <div key={i} className="dif-item strike"><div className="dif-dot gray" />{item}</div>
               ))}
             </div>
@@ -1222,7 +1229,7 @@ export default function OndaLanding() {
           <div className="dif-card" style={{ borderColor:'rgba(61,142,255,0.2)' }}>
             <div className="dif-card-title" style={{ color:'var(--accent)' }}>O que a Onda constrói</div>
             <div className="dif-items">
-              {['Uma estrutura digital de crescimento','SEO local que gera visibilidade real','Sistemas que captam e organizam leads','Automações que poupam tempo e dinheiro'].map((item,i) => (
+              {['Uma infraestrutura digital integrada','Processos mais simples e organizados','Informação centralizada','Automação onde faz sentido','Tecnologia preparada para evoluir'].map((item,i) => (
                 <div key={i} className="dif-item highlight"><div className="dif-dot blue" />{item}</div>
               ))}
             </div>
@@ -1235,17 +1242,17 @@ export default function OndaLanding() {
           <div>
             <p className="section-label">Divisão criativa</p>
             <h2 className="section-title">Creative<span style={{ color:'var(--accent)' }}>.</span>Onda</h2>
-            <p className="section-sub" style={{ marginTop:'1rem' }}>Quando a estratégia encontra a arte. Para marcas que precisam de direção criativa, branding e projetos especiais.</p>
+            <p className="section-sub" style={{ marginTop:'1rem' }}>Quando a estratégia encontra a expressão. Para marcas que precisam de mais do que tecnologia. Direção criativa, branding, campanhas, fotografia, vídeo e conteúdo editorial para construir marcas com identidade e diferenciação.</p>
             <div className="creative-tags">
               {['Branding','Direção Criativa','Campanhas','Fotografia','Vídeo','Conteúdo Editorial','Moda'].map(t => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
-            <a href="#contacto" className="btn-primary" style={{ marginTop:'2rem', display:'inline-block' }}>Saber mais</a>
+            <a href="#contacto" className="btn-primary" style={{ marginTop:'2rem', display:'inline-block' }}>Conhecer Creative →</a>
           </div>
           <div style={{ textAlign:'center' }}>
             <div style={{ width:'240px', height:'240px', margin:'0 auto', borderRadius:'50%', border:'0.5px solid rgba(61,142,255,0.2)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'5rem' }}>✦</div>
-            <p style={{ marginTop:'1.5rem', fontSize:'0.85rem', color:'var(--muted)', fontStyle:'italic' }}>Uma extensão premium da Onda<br />para negócios que procuram diferenciação.</p>
+            <p style={{ marginTop:'1.5rem', fontSize:'0.85rem', color:'var(--muted)', fontStyle:'italic' }}>Uma extensão da Onda<br />para projetos que pedem uma abordagem mais criativa.</p>
           </div>
         </div>
       </section>
@@ -1264,17 +1271,17 @@ export default function OndaLanding() {
         <div className="cta-final-inner fade-in">
           <div className="cta-wave-big">🌊</div>
           <p className="section-label">Pronto para surfar?</p>
-          <h2 className="section-title" style={{ fontSize:'clamp(2rem,5vw,4rem)' }}>Vamos fazer crescer<br />o seu negócio.</h2>
-          <p className="section-sub" style={{ margin:'1.5rem auto 2.5rem', textAlign:'center' }}>Analisamos o seu negócio e identificamos as oportunidades de crescimento digital.</p>
-          <a href="#contacto" className="btn-primary" style={{ fontSize:'1.05rem', padding:'1rem 2.5rem' }}>Agendar Reunião Estratégica</a>
+          <h2 className="section-title" style={{ fontSize:'clamp(2rem,5vw,4rem)' }}>O seu próximo movimento<br />começa aqui.</h2>
+          <p className="section-sub" style={{ margin:'1.5rem auto 2.5rem', textAlign:'center' }}>Conte-nos como a sua empresa funciona hoje. Vamos identificar onde a tecnologia pode organizar, simplificar e acelerar o seu negócio.</p>
+          <a href="#contacto" className="btn-primary" style={{ fontSize:'1.05rem', padding:'1rem 2.5rem' }}>Falar com a Onda</a>
         </div>
       </section>
 
       <section id="contacto">
         <div className="fade-in" style={{ maxWidth:'720px' }}>
           <p className="section-label">Contacto</p>
-          <h2 className="section-title">Agendar Reunião<br />Estratégica</h2>
-          <p className="section-sub" style={{ marginTop:'0.75rem' }}>Preencha os dados abaixo. A nossa equipa entra em contacto em 24 horas úteis.</p>
+          <h2 className="section-title">Vamos conversar sobre<br />o seu negócio.</h2>
+          <p className="section-sub" style={{ marginTop:'0.75rem' }}>Preencha os dados abaixo. Entraremos em contacto para compreender o seu projeto e identificar a melhor solução.</p>
         </div>
         {sent ? (
           <div className="fade-in" style={{ marginTop:'3rem', textAlign:'center', padding:'3rem', background:'var(--card)', border:'0.5px solid var(--border)', borderRadius:'20px', maxWidth:'480px' }}>
@@ -1302,10 +1309,8 @@ export default function OndaLanding() {
                 value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} />
             </div>
             {[
-              { label:'Setor de atividade', key:'setor', opts:['Serviços','Saúde','Imobiliário','Hotelaria','Restauração','Retalho','E-commerce','Turismo','Wellness','Outro'] },
-              { label:'Faturação mensal aproximada', key:'faturacao', opts:['Menos de 10.000€','10.000 - 25.000€','25.000 - 50.000€','50.000 - 100.000€','Mais de 100.000€'] },
-              { label:'Orçamento mensal para marketing', key:'orcamento', opts:['Menos de 500€','500 - 1.000€','1.000 - 2.500€','2.500 - 5.000€','Mais de 5.000€'] },
-              { label:'Principal objetivo', key:'objetivo', opts:['Gerar mais leads','Aumentar vendas','Melhorar posicionamento','Lançar novo produto','Outro'] },
+              { label:'Setor de atividade', key:'setor', opts:['Serviços','Saúde','Hotelaria','Restauração','Turismo','Wellness','Retalho','E-commerce','Imobiliário','Tecnologia','Outro'] },
+              { label:'O que procura?', key:'objetivo', opts:['Website','E-commerce','Software personalizado','Sistema de gestão','Automação','Inteligência Artificial','Presença digital','Google Ads','Ainda não sei'] },
             ].map(({ label, key, opts }) => (
               <div key={key} className="form-group">
                 <label className="form-label">{label}</label>
@@ -1323,7 +1328,12 @@ export default function OndaLanding() {
                 {['Google','Redes Sociais','Recomendação','Outro'].map(o => <option key={o} value={o}>{o}</option>)}
               </select>
             </div>
-            <button type="submit" className="form-submit">Agendar Reunião Estratégica →</button>
+            <div className="form-group form-full">
+              <label className="form-label">Conte-nos brevemente o que pretende resolver</label>
+              <textarea className="form-input" rows="4" placeholder="Descreva o que gostaria de melhorar, organizar ou resolver no seu negócio"
+                value={form.mensagem} onChange={e => setForm({ ...form, mensagem: e.target.value })} />
+            </div>
+            <button type="submit" className="form-submit">Enviar mensagem →</button>
             <p className="form-privacy">Os seus dados são tratados com confidencialidade. Consulte a nossa política de privacidade.</p>
           </form>
         )}
@@ -1333,12 +1343,12 @@ export default function OndaLanding() {
         <div className="footer-logo">✦ ONDA</div>
         <ul className="footer-links">
           <li><a href="#problema">Sobre nós</a></li>
-          <li><a href="#planos">Serviços</a></li>
+          <li><a href="#planos">Solutions</a></li>
           <li><a href="#metodo">Método</a></li>
           <li><a href="#creative">Creative.Onda</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
-        <p className="footer-copy">©2024 Onda · Agência de Marketing em Lisboa</p>
+        <p className="footer-copy">©2026 Onda · Lisboa, Portugal</p>
       </footer>
     </>
   );
