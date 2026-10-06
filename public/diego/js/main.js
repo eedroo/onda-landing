@@ -135,7 +135,7 @@ function initBalls() {
                 currentScroll * -0.1;
 
             const translateBack =
-                currentScroll * 0.18;
+                currentScroll * -0.18;
 
             backBall.style.transform = `
                 translate3d(
