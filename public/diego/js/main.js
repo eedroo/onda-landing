@@ -87,7 +87,10 @@ function initBalls() {
     const mainBall =
         document.querySelector('.ball-main');
 
-    if (!mainBall) return;
+    const backBall =
+        document.querySelector('.ball-back');
+
+    if (!mainBall && !backBall) return;
 
     let currentScroll = 0;
     let targetScroll = 0;
@@ -103,24 +106,47 @@ function initBalls() {
         currentScroll +=
             (targetScroll - currentScroll) * 0.08;
 
-        const scaleMain =
-            1 + currentScroll * 0.0007;
+        if (mainBall) {
 
-        const rotateMain =
-            currentScroll * 0.12;
+            const scaleMain =
+                1 + currentScroll * 0.0007;
 
-        const translateMain =
-            currentScroll * 0.35;
+            const rotateMain =
+                currentScroll * 0.12;
 
-        mainBall.style.transform = `
-            translate3d(
-                0,
-                ${translateMain}px,
-                0
-            )
-            rotate(${rotateMain}deg)
-            scale(${scaleMain})
-        `;
+            const translateMain =
+                currentScroll * 0.35;
+
+            mainBall.style.transform = `
+                translate3d(
+                    0,
+                    ${translateMain}px,
+                    0
+                )
+                rotate(${rotateMain}deg)
+                scale(${scaleMain})
+            `;
+
+        }
+
+        if (backBall) {
+
+            const rotateBack =
+                currentScroll * -0.1;
+
+            const translateBack =
+                currentScroll * 0.18;
+
+            backBall.style.transform = `
+                translate3d(
+                    0,
+                    ${translateBack}px,
+                    0
+                )
+                rotate(${rotateBack}deg)
+            `;
+
+        }
 
         requestAnimationFrame(
             animateBall
